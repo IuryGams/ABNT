@@ -1,4 +1,0 @@
-C:/Dev/ProjectsC++/PROTOCOL/ABNT/build/CMakeFiles/ABNT_PROJECTlib.dir
-C:/Dev/ProjectsC++/PROTOCOL/ABNT/build/CMakeFiles/ABNT_PROJECT.dir
-C:/Dev/ProjectsC++/PROTOCOL/ABNT/build/CMakeFiles/edit_cache.dir
-C:/Dev/ProjectsC++/PROTOCOL/ABNT/build/CMakeFiles/rebuild_cache.dir
