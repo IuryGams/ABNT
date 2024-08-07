@@ -16,11 +16,7 @@ int main()
 
     std::vector<uint8_t> frameWithCRC = ABNT.addCRCToFrame(data, CRCType::ARC);
 
-    std::cout << "Frame com CRC: ";
-    for (uint8_t byte : frameWithCRC) {
-        std::cout << std::hex << std::uppercase << "0x" << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
-    }
-    std::cout << std::endl;
+    ABNT.printFrame(frameWithCRC);
 
     if(ABNT.isABNTFrame(frameWithCRC))
     {

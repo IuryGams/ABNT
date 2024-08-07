@@ -73,23 +73,24 @@ namespace protocol
 
     void ABNTProtocol::printFrame(const std::vector<uint8_t> &frame)
     {
+        std::cout << "Frame com CRC: ";
         for (uint8_t byte : frame)
         {
-            std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)byte << " ";
+            std::cout << std::hex << std::uppercase << "0x" << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
         }
         std::cout << std::endl;
     }
-
 
     auto ABNTProtocol::isABNTFrame(const std::vector<uint8_t> &frame) -> bool
     {
         constexpr size_t MIN_REQUEST_SIZE = 66;
         constexpr size_t MIN_RESPONSE_SIZE = 258;
 
-        if(frame.size() != MIN_REQUEST_SIZE && frame.size() != MIN_RESPONSE_SIZE) return false;
+        if (frame.size() != MIN_REQUEST_SIZE && frame.size() != MIN_RESPONSE_SIZE)
+            return false;
 
         int8_t command = frame.at(0);
-        if((command >= 1 && command <= 99) && command != 0x05, command !=  0x06, command !=  0x10, command !=  0x15)
+        if ((command >= 1 && command <= 99) && command != 0x05, command != 0x06, command != 0x10, command != 0x15)
         {
             uint16_t receivedCRC = (frame.at(frame.size() - 1) << 8) | frame.at(frame.size() - 2);
 
@@ -97,13 +98,11 @@ namespace protocol
 
             uint16_t calculatedCRC = calculateCRC16(data, CRCType::ARC);
 
-            if(receivedCRC == calculatedCRC) return true;
+            if (receivedCRC == calculatedCRC)
+                return true;
         }
 
         return false;
     }
-
-
-
 
 }
